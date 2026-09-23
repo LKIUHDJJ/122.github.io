@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Task9 第九个帖子</h1>
+<hr>
+<p><!DOCTYPE html>
+<html>
+<body>
+散乱的密文
+
+解题步骤
+  用codeblocks
+  #include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    // 密文和密钥
+    char cipher[] = "If5{ag024c483549d7fd@@@1";
+    char key[] = "216534";
+    int n = strlen(key); // n=6
+    char result[1000] = {0};
+    int res_idx = 0;
+
+    // 分组，每6个字符一组
+    for(int i = 0; i < strlen(cipher); i += n)
+    {
+        char block[7] = {0};
+        char temp[7] = {0};
+        strncpy(block, cipher+i, n); // 取出一组6字符
+
+        // 核心置换逻辑，和图片Python代码一模一样
+        for(int j = 0; j < n; j++)
+        {
+            int pos = key[j] - '0' - 1; // key数字转下标，-1
+            temp[pos] = block[j];
+        }
+        // 把本组解密结果拼到总结果
+        strcat(result, temp);
+    }
+
+    printf("解密完整结果：%s\n",result);
+
+    // 删除末尾填充的@符号
+    char final_flag[1000]={0};
+    int p=0;
+    for(int i=0;result[i]!='\0';i++){
+        if(result[i]!='@'){
+            final_flag[p++] = result[i];
+        }
+    }
+    final_flag[p] = '\0';
+    printf("去掉填充符后的flag：%s\n",final_flag);
+
+    return 0;
+}
+</div>
+</body>
+</html></p >
+<br>
+<a href="index.html">← 返回博客帖子列表</a >
+</body>
+</html>
