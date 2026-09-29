@@ -7,9 +7,45 @@
 <p><!DOCTYPE html>
 <html>
 <body>
-解题思路
-使用在线网站：https://stuff.splitbrain.org/ook/
-复制密文粘贴进去，点击Ook! to text
+<p>Bugku Crypto｜.!? Writeup</p>
+<p>题目信息</p>
+<p>平台：Bugku CTF</p>
+<p>分类：Crypto 密码学</p>
+<p>分值：20 分</p>
+<p>考点：Ook! 编码（属于 Brainfuck 的变体）</p>
+
+<p>题面：一大串由 . ! ? 三种符号组成的密文</p>
+<p>Ook! 是 Brainfuck 的趣味变体，只用 Ook. Ook! Ook? 三种单词；本题简化，直接用 . ! ? 三个符号替代。</p>
+
+<p>解题步骤：</p>
+<p>复制题目页面里全部的 . ! ? 密文（去掉换行空格）</p>
+<p>打开 Bugku 自带在线工具：https://tool.bugku.com/brainfuck/</p>
+<p>选择 Ook! to Text 选项卡</p>
+<p>把密文粘贴进输入框，点击解密</p>
+<p>直接输出 flag{xxxx}，复制提交</p>
+
+<p>Ook! 简单原理：</p>
+<p>Ook! 和 Brainfuck 指令一一对应：</p>
+<p>Ook. Ook. → &gt;</p>
+<p>Ook. Ook? → &lt;</p>
+<p>Ook? Ook. → +</p>
+<p>Ook? Ook? → -</p>
+<p>Ook. Ook! → .</p>
+<p>Ook! Ook. → ,</p>
+<p>Ook! Ook? → [</p>
+<p>Ook? Ook! → ]</p>
+<p>本题把 Ook 文字省略，只用 . ! ? 三个符号，工具可以直接识别解析。</p>
+
+<p>小坑：</p>
+<p>不要当成摩斯密码！摩斯是点和横线，本题是 Ook 编码，很多新手踩坑。</p>
+<p>复制密文时尽量把所有符号完整复制，多余换行不影响，但不能少符号。</p>
+<p>在线工具选对标签：Ook! to Text，不要选成 Brainfuck。</p>
+
+<p>知识点总结：</p>
+<p>Ook!：Brainfuck 衍生趣味编码，仅使用三种符号；</p>
+<p>Brainfuck：极简编程语言，只有 8 条指令，CTF 密码学常考；</p>
+<p>看到只有 . ! ? 三种符号，优先考虑 Ook!。</p>
+
 </div>
 </body>
 </html></p >
