@@ -7,44 +7,51 @@
 <p><!DOCTYPE html>
 <html>
 <body>
-Bugku CTF《easy_nbt》MISC 
-题目基础信息
-题目名称：easy_nbt
-题目类型：MISC 杂项（Minecraft NBT 文件解析）
-考点分析
-本题考察Minecraft NBT 格式文件，NBT 全称 Named Binary Tag，是我的世界游戏用来存档的二进制数据格式。.dat后缀的存档文件绝大多数是gzip 压缩包，外表后缀写的是.dat，内部是 gzip 压缩数据，不是普通文本。
-下载附件解压后得到我的世界存档目录，包含level.dat、playerdata文件夹等 mc 存档文件。flag 被藏在 NBT 二进制存档里面，不能直接双击记事本打开，直接打开会看到大量乱码。
-坑点：很多新手直接用记事本打开level.dat，满眼乱码，找不到任何可读文字，因为原始 dat 是被 gzip 压缩过的二进制存档，需要先解压，或者用专门 NBT 解析工具读取。
-步骤一：下载解压题目附件
-在 Bugku 平台下载压缩包，完整解压，得到我的世界存档文件夹。
-文件夹内部可以看到：level.dat文件、playerdata子文件夹，还有一些截图类的图片文件。图片没有隐藏信息，图片只是干扰项，不需要分析图片。
-重点目标文件：level.dat（主世界存档文件）；playerdata目录下一串长数字命名的无后缀玩家数据文件。
-Windows 需要开启【文件扩展名】显示，方便修改文件后缀。
-方法 A：修改后缀为.gz解压（Windows 原生工具，不需要额外软件）
-复制一份level.dat做备份，不要直接修改原文件，防止文件损坏。
-将备份副本重命名，把后缀.dat修改为.gz，文件名变为level.gz。
-补充：有同学改成 zip 会解压报错，因为它是 gzip 格式，不是标准 zip，优先改为 gz 后缀。
-Windows 可以直接双击打开 gz 压缩包，把里面解压输出的无后缀 NBT 原始文件提取出来。
-使用 Notepad++ 或者 010 Editor 打开解压出来的原始 NBT 文件。
-使用快捷键Ctrl+F，搜索关键词字符串flag{。
-搜索命中，直接复制完整flag{...}字符串，提交平台。
-方法 B：使用 NbtStudio 专用 NBT 解析工具（最适合 Minecraft 存档，推荐）
-NbtStudio 是专门解析 Minecraft NBT/.dat 存档的图形化工具，无需手动改压缩后缀，工具内部自动处理 gzip 解压。
-https://www.mcshuo.com/tools/nbt-studio
-选中题目附件的level.dat文件。
-工具自动识别 gzip 压缩，自动解压并把二进制 NBT 解析成树形可视化结构。
-在软件界面使用查找功能搜索flag，直接定位 flag 所在标签，复制完整 flag 字符串即可提交。
-高频踩坑点梳理
-直接记事本打开原始 level.dat：原始 dat 是 gzip 压缩二进制，打开全是乱码，看不到 flag，必须解压或者使用 NbtStudio 工具解析，不要浪费时间在乱码上面。
-错误修改为 zip 后缀：该文件是 gzip（.gz）格式，不是 zip，改成 zip 解压报错，很多同学踩这个坑，优先改为.gz后缀。
-忘记备份原文件：直接修改原 level.dat 后缀，操作失误会损坏原始附件，建议复制副本再修改后缀。
-盯着 jpg/png 截图分析：附件附带的 mc 截图图片只是干扰素材，图片内部没有隐写 flag，不需要分析图片。
-解压后拿错文件：gz 解压出来的是无后缀的 NBT 文件，不要继续拿原来的 dat 文件去搜索 flag。
-原理复盘总结
-Minecraft 存档的.dat文件本质就是 gzip 压缩的 NBT 二进制标签文件，出题人直接把 flag 字符串写进存档 NBT 标签。解题的核心就是：识别.dat是 gzip 压缩包，进行解压，或者使用 NBT 专用解析工具，解压后直接搜索 flag 特征字符串。
-拓展小知识：以后遇到 CTF 出现.dat并且提示 Minecraft/NBT，第一反应优先考虑 gzip 解压，优先使用 NbtStudio 工具。
-✅ 本题 flag：
-flag{Easy_Nbt_1s_funny}
+<p>Bugku CTF《easy_nbt》MISC题目基础信息</p>
+<p>题目名称：easy_nbt</p>
+<p>题目类型：MISC 杂项（Minecraft NBT 文件解析）</p>
+<p>题目提示：无</p>
+<p>题目描述：解析Minecraft的NBT存档文件获取flag</p>
+
+<p>考点分析：</p>
+<p>本题考察Minecraft NBT 格式文件，NBT 全称 Named Binary Tag，是我的世界游戏用来存档的二进制数据格式。.dat后缀的存档文件绝大多数是gzip 压缩包，外表后缀写的是.dat，内部是 gzip 压缩数据，不是普通文本。</p>
+<p>下载附件解压后得到我的世界存档目录，包含level.dat、playerdata文件夹等 mc 存档文件。flag 被藏在 NBT 二进制存档里面，不能直接双击记事本打开，直接打开会看到大量乱码。</p>
+<p>坑点：很多新手直接用记事本打开level.dat，满眼乱码，找不到任何可读文字，因为原始 dat 是被 gzip 压缩过的二进制存档，需要先解压，或者用专门 NBT 解析工具读取。</p>
+
+<p>步骤一：下载解压题目附件</p>
+<p>在 Bugku 平台下载压缩包，完整解压，得到我的世界存档文件夹。</p>
+<p>文件夹内部可以看到：level.dat文件、playerdata子文件夹，还有一些截图类的图片文件。图片没有隐藏信息，图片只是干扰项，不需要分析图片。</p>
+<p>重点目标文件：level.dat（主世界存档文件）；playerdata目录下一串长数字命名的无后缀玩家数据文件。</p>
+<p>Windows 需要开启【文件扩展名】显示，方便修改文件后缀。</p>
+
+<p>方法 A：修改后缀为.gz解压（Windows 原生工具，不需要额外软件）</p>
+<p>复制一份level.dat做备份，不要直接修改原文件，防止文件损坏。</p>
+<p>将备份副本重命名，把后缀.dat修改为.gz，文件名变为level.gz。</p>
+<p>补充：有同学改成 zip 会解压报错，因为它是 gzip 格式，不是标准 zip，优先改为 gz 后缀。</p>
+<p>Windows 可以直接双击打开 gz 压缩包，把里面解压输出的无后缀 NBT 原始文件提取出来。</p>
+<p>使用 Notepad++ 或者 010 Editor 打开解压出来的原始 NBT 文件。</p>
+<p>使用快捷键Ctrl+F，搜索关键词字符串flag{。</p>
+<p>搜索命中，直接复制完整flag{...}字符串，提交平台。</p>
+
+<p>方法 B：使用 NbtStudio 专用 NBT 解析工具（最适合 Minecraft 存档，推荐）</p>
+<p>NbtStudio 是专门解析 Minecraft NBT/.dat 存档的图形化工具，无需手动改压缩后缀，工具内部自动处理 gzip 解压。</p>
+<p>https://www.mcshuo.com/tools/nbt-studio</p>
+<p>选中题目附件的level.dat文件。</p>
+<p>工具自动识别 gzip 压缩，自动解压并把二进制 NBT 解析成树形可视化结构。</p>
+<p>在软件界面使用查找功能搜索flag，直接定位 flag 所在标签，复制完整 flag 字符串即可提交。</p>
+
+<p>高频踩坑点梳理：</p>
+<p>直接记事本打开原始 level.dat：原始 dat 是 gzip 压缩二进制，打开全是乱码，看不到 flag，必须解压或者使用 NbtStudio 工具解析，不要浪费时间在乱码上面。</p>
+<p>错误修改为 zip 后缀：该文件是 gzip（.gz）格式，不是 zip，改成 zip 解压报错，很多同学踩这个坑，优先改为.gz后缀。</p>
+<p>忘记备份原文件：直接修改原 level.dat 后缀，操作失误会损坏原始附件，建议复制副本再修改后缀。</p>
+<p>盯着 jpg/png 截图分析：附件附带的 mc 截图图片只是干扰素材，图片内部没有隐写 flag，不需要分析图片。</p>
+<p>解压后拿错文件：gz 解压出来的是无后缀的 NBT 文件，不要继续拿原来的 dat 文件去搜索 flag。</p>
+
+<p>原理复盘总结：</p>
+<p>Minecraft 存档的.dat文件本质就是 gzip 压缩的 NBT 二进制标签文件，出题人直接把 flag 字符串写进存档 NBT 标签。解题的核心就是：识别.dat是 gzip 压缩包，进行解压，或者使用 NBT 专用解析工具，解压后直接搜索 flag 特征字符串。</p>
+<p>拓展小知识：以后遇到 CTF 出现.dat并且提示 Minecraft/NBT，第一反应优先考虑 gzip 解压，优先使用 NbtStudio 工具。</p>
+
+<p>✅ 本题 flag：flag{Easy_Nbt_1s_funny}</p>
 </div>
 </body>
 </html></p >
