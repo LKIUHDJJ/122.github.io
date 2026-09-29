@@ -7,11 +7,36 @@
 <p><!DOCTYPE html>
 <html>
 <body>
-用https://ctf.bugku.com/tool/railfence解码
+<p>Bugku Crypto｜聪明的小羊 Writeup</p>
+<p>题目信息</p>
+<p>平台：Bugku CTF</p>
+<p>分类：Crypto 古典密码</p>
+<p>分值：20 分</p>
+<p>提示：一只小羊翻过了 2 个栅栏</p>
+<p>考点：栅栏密码（2 栏）</p>
 
-根据提示，栏数设置为 2
-输入密文：fa{fe13f590lg6d46d0d0}
-点击解密
+<p>提示直接点明：2 个栅栏 = 栏数 = 2</p>
+
+<p>解题步骤</p>
+<p>方法 1：Bugku 自带栅栏工具（推荐）</p>
+<p>打开 Bugku 工具页：https://ctf.bugku.com/tool/railfence</p>
+<p>粘贴密文fa{fe13f590lg6d46d0d0}</p>
+<p>解密模式，栏数填 2，点击解密</p>
+<p>得到明文，直接提交</p>
+
+
+<p>知识点总结</p>
+<p>栅栏密码（Rail Fence）：置换类密码，不改变字符，只打乱顺序</p>
+<p>看到关键词：栅栏、翻过 X 个栅栏，直接锁定栅栏密码，X 就是栏数</p>
+<p>2 栏栅栏是 CTF 最常考的栅栏类型</p>
+
+<p>小坑</p>
+<p>不要当成凯撒、Base64！这是置换密码，字符不变，只是顺序重排</p>
+<p>栏数一定要填 2，填错栏数解密结果完全错误</p>
+
+
+
+
 </div>
 </body>
 </html></p >
