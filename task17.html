@@ -1,32 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Task17 第十七个帖子 telnet
+</h1>
+<hr>
+<p><!DOCTYPE html>
+<html>
+<body>
 # Bugku CTF｜telnet MISC WriteUp
 
-> 
-> 题目信息
-> 
-> 
-> - 题目：telnet
-> - 分类：MISC 杂项（流量分析）
-> - 分值：10｜金币：1
-> - 出题人：未知
-> - 一血：ldsg
-> - 描述：key 格式`flag{xxxxxxxxxxxxxxxxxxxxxxxxxxx}`，提供 pcap 流量包附件下载
+ 题目信息
+ 
+ - 题目：telnet
+ - 分类：MISC 杂项（流量分析）
+ - 描述：key 格式`flag{xxxxxxxxxxxxxxxxxxxxxxxxxxx}`，提供 pcap 流量包附件下载
 
-## 一、审题分析
+ 一、审题分析
 
 下载得到 `.pcap` 流量捕获文件，是**Wireshark 流量抓包文件**。
 题目名字 `telnet`，提示流量里面存在 Telnet 协议会话；Telnet 明文传输，所有交互数据全部裸漏在数据包中，flag 就在会话数据里面。
 
-## 二、解题步骤
-
-### 方法 1：Wireshark 分析（标准做法）
+ 二、解题步骤
+ 方法 1：Wireshark 分析（标准做法）
 
 1. 使用 Wireshark 打开下载好的`telnet.pcap`流量包。
-2. **方式 A：直接字符串查找**
+2. 方式 A：
    - 快捷键 `Ctrl + F` 打开查找窗口；
    - 查找类型选择：`分组字节流`，搜索字符串：`flag{`；
    - 定位到包含 flag 的数据包。
-3. **方式 B：追踪 TCP 流（更推荐，看完整会话）**
-   - 找到 telnet 协议数据包（telnet 默认端口 **23**）；
+3. 方式 B：追踪 TCP 流（更推荐，看完整会话）
+   - 找到 telnet 协议数据包（telnet 默认端口 23）；
    - 在数据包上鼠标右键 → `追踪` → `TCP流(TCP Stream)`；
    - 弹出窗口会完整展示 telnet 客户端和服务器之间全部明文交互内容；
    - 在 TCP 流窗口直接复制拿到 flag。
