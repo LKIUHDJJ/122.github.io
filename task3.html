@@ -1,23 +1,38 @@
 <!DOCTYPE html>
 <html>
 <body>
-<h1>Task1 第一个帖子 alert</h1>
+<h1>Task3 第三个帖子 alert</h1>
 <hr>
 <p><!DOCTYPE html>
 <html>
 <body>
+<p>Bugku Web alert Writeup</p>
+<p>题目信息</p>
+<p>平台：Bugku CTF</p>
+<p>分类：Web</p>
+<p>难度：签到题</p>
+<p>分值：10 分</p>
+<p>题目描述：访问网页直接弹出 alert 弹窗，弹窗里面显示flag，点击确定弹窗消失，页面空白。</p>
 
- 解题步骤
+<p>题目分析：</p>
+<p>打开靶场链接，浏览器弹出 JavaScript alert 警告框，flag 在弹窗内，但是手速慢一点点击确定之后弹窗关闭，页面上看不到任何内容。
+考点：JavaScript 前端代码，flag存于JS代码alert弹窗中，弹窗关闭后页面无显示，查看网页源代码获取。</p>
 
- 1. 点击延时场景，访问靶场链接。
+<p>解题步骤：</p>
+<p>方法A：弹窗出现瞬间快速复制弹窗内flag（手速要求高，不推荐）</p>
+<p>方法B：查看网页源代码（推荐）</p>
+<p>1、访问靶场页面，弹出alert弹窗，不要点击确定。</p>
+<p>2、快捷键 Ctrl+U 打开网页源代码。</p>
+<p>3、源码中找到 &lt;script&gt; 标签，里面存在 alert("flag{xxxx}"); 代码。</p>
+<p>4、直接复制引号内部flag字符串，提交平台。</p>
+<p>补充：如果已经点了确定关掉弹窗，直接Ctrl+U依旧可以看到完整JS源码，不需要刷新页面。</p>
 
- 2. 方式一：Ctrl+U打开网页源代码，查找alert相关JS代码，提取flag。
+<p>原理：</p>
+<p>alert()是JavaScript弹窗函数，弹窗文字写在前端JS脚本里。弹窗只是浏览器的交互效果，JS代码完整随HTML源码下发，关闭弹窗不会删除页面源代码。</p>
 
- 3. 方式二：F12打开开发者工具，进入Console控制台，查看弹窗对应的脚本内容。
+<p>知识点总结：</p>
+<p>alert弹窗内容来源于页面JS源码；弹窗关掉之后源码依然保留；</p>
 
- 4. 复制完整flag，回到题目页面提交。
- 知识点
-JavaScript alert弹窗，JS脚本代码可以在网页源代码/开发者工具中查看。
 </div>
 </body>
 </html></p >
