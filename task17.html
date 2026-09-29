@@ -7,62 +7,50 @@
 <p><!DOCTYPE html>
 <html>
 <body>
-# Bugku CTF｜telnet MISC WriteUp
+<p>Bugku CTF《telnet》MISC题目基础信息</p>
+<p>题目名称：telnet</p>
+<p>题目类型：MISC 杂项（流量分析）</p>
+<p>题目提示：无</p>
+<p>题目描述：pcap流量抓包文件，分析Telnet明文会话获取flag</p>
 
- 题目信息
- 
- - 题目：telnet
- - 分类：MISC 杂项（流量分析）
- 
+<p>审题分析：</p>
+<p>下载得到 .pcap 流量捕获文件，是Wireshark 流量抓包文件。</p>
+<p>题目名字 telnet，提示流量里面存在 Telnet 协议会话；Telnet 明文传输，所有交互数据全部裸漏在数据包中，flag 就在会话数据里面。</p>
 
- 一、审题分析
+<p>解题步骤：</p>
+<p>方法 1：Wireshark 分析（标准做法）</p>
+<p>1. 使用 Wireshark 打开下载好的telnet.pcap流量包。</p>
+<p>2. 方式 A：</p>
+<p>‑ 快捷键 Ctrl + F 打开查找窗口；</p>
+<p>‑ 查找类型选择：分组字节流，搜索字符串：flag{；</p>
+<p>‑ 定位到包含 flag 的数据包。</p>
+<p>3. 方式 B：追踪 TCP 流（更推荐，看完整会话）</p>
+<p>‑ 找到 telnet 协议数据包（telnet 默认端口 23）；</p>
+<p>‑ 在数据包上鼠标右键 → 追踪 → TCP流(TCP Stream)；</p>
+<p>‑ 弹出窗口会完整展示 telnet 客户端和服务器之间全部明文交互内容；</p>
+<p>‑ 在 TCP 流窗口直接复制拿到 flag。</p>
 
-下载得到 `.pcap` 流量捕获文件，是**Wireshark 流量抓包文件**。
-题目名字 `telnet`，提示流量里面存在 Telnet 协议会话；Telnet 明文传输，所有交互数据全部裸漏在数据包中，flag 就在会话数据里面。
+<p>telnet 协议是明文协议，没有加密，账号、输入输出全部直接保存在流量包，这也是 telnet 现在被 ssh 替代的原因。</p>
 
- 二、解题步骤
- 方法 1：Wireshark 分析（标准做法）
+<p>方法 2：CyberChef（不用装 wireshark）</p>
+<p>1. 将 pcap 文件整体拖入 CyberChef 输入框；</p>
+<p>2. 使用 Extract Strings（提取字符串）操作；</p>
+<p>3. 在输出结果搜索关键词 flag{，直接筛选出 flag 字符串。</p>
 
-1. 使用 Wireshark 打开下载好的`telnet.pcap`流量包。
-2. 方式 A：
-   - 快捷键 `Ctrl + F` 打开查找窗口；
-   - 查找类型选择：`分组字节流`，搜索字符串：`flag{`；
-   - 定位到包含 flag 的数据包。
-3. 方式 B：追踪 TCP 流（更推荐，看完整会话）
-   - 找到 telnet 协议数据包（telnet 默认端口 23）；
-   - 在数据包上鼠标右键 → `追踪` → `TCP流(TCP Stream)`；
-   - 弹出窗口会完整展示 telnet 客户端和服务器之间全部明文交互内容；
-   - 在 TCP 流窗口直接复制拿到 flag。
+<p>方法 3：命令行 strings 工具（kali/linux）</p>
+<p>strings telnet.pcap | grep flag</p>
+<p>strings提取文件内所有可打印字符串，grep 过滤 flag 相关，直接输出结果。</p>
 
- 
-> telnet 协议是明文协议，没有加密，账号、输入输出全部直接保存在流量包，这也是 telnet 现在被 ssh 替代的原因。
+<p>考点总结：</p>
+<p>1. pcap 流量包基础分析，Wireshark 基础操作；</p>
+<p>2. Telnet 协议明文传输特性，端口 23，所有交互不加密；</p>
+<p>3. 追踪 TCP 流，提取会话明文；</p>
+<p>4. 流量题小技巧：遇到 flag {} 格式，优先直接搜索字符串flag{快速定位。</p>
 
-### 方法 2：CyberChef（随波逐流，不用装 wireshark）
-
-1. 将 pcap 文件整体拖入 CyberChef 输入框；
-2. 使用 `Extract Strings`（提取字符串）操作；
-3. 在输出结果搜索关键词 `flag{`，直接筛选出 flag 字符串。
-
-### 方法 3：命令行 strings 工具（kali/linux）
-
-```
-strings telnet.pcap | grep flag
-```
-
-`strings`提取文件内所有可打印字符串，grep 过滤 flag 相关，直接输出结果。
-
-## 三、考点总结
-
-1. pcap 流量包基础分析，Wireshark 基础操作；
-2. **Telnet 协议明文传输特性**，端口 23，所有交互不加密；
-3. 追踪 TCP 流，提取会话明文；
-4. 流量题小技巧：遇到 flag {} 格式，优先直接搜索字符串`flag{`快速定位。
-
-## 四、踩坑记录
-
-- ❌ 直接用记事本打开 pcap：大量二进制乱码，肉眼很难找到 flag；
-- ❌ 不要只看单个数据包，telnet 交互会拆分多个数据包，追踪 TCP 流才能拼接完整会话内容；
-- ✅ 优先使用「追踪 TCP 流」，比单包查找更适合看 telnet、http 这类会话。
+<p>踩坑记录：</p>
+<p>❌ 直接用记事本打开 pcap：大量二进制乱码，肉眼很难找到 flag；</p>
+<p>❌ 不要只看单个数据包，telnet 交互会拆分多个数据包，追踪 TCP 流才能拼接完整会话内容；</p>
+<p>✅ 优先使用「追踪 TCP 流」，比单包查找更适合看 telnet、http 这类会话。</p>
 </div>
 </body>
 </html></p >
