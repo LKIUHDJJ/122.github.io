@@ -6,13 +6,10 @@
 <p><!DOCTYPE html>
 <html>
 <body>
-
-
-解题步骤
-  用codeblocks
-  #include <stdio.h>
-#include <string.h>
-
+<p>解题步骤</p>
+<p>使用 Code::Blocks 运行C语言解密代码</p>
+<pre>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
 int main()
 {
     // 密文和密钥
@@ -21,16 +18,14 @@ int main()
     int n = strlen(key); // n=6
     char result[1000] = {0};
     int res_idx = 0;
-
     // 分组，每6个字符一组
-    for(int i = 0; i < strlen(cipher); i += n)
+    for(int i = 0; i &lt; strlen(cipher); i += n)
     {
         char block[7] = {0};
         char temp[7] = {0};
         strncpy(block, cipher+i, n); // 取出一组6字符
-
         // 核心置换逻辑，和图片Python代码一模一样
-        for(int j = 0; j < n; j++)
+        for(int j = 0; j &lt; n; j++)
         {
             int pos = key[j] - '0' - 1; // key数字转下标，-1
             temp[pos] = block[j];
@@ -38,9 +33,7 @@ int main()
         // 把本组解密结果拼到总结果
         strcat(result, temp);
     }
-
     printf("解密完整结果：%s\n",result);
-
     // 删除末尾填充的@符号
     char final_flag[1000]={0};
     int p=0;
@@ -51,9 +44,13 @@ int main()
     }
     final_flag[p] = '\0';
     printf("去掉填充符后的flag：%s\n",final_flag);
-
     return 0;
-}
+}</pre>
+<p>操作说明：</p>
+<p>1、打开Code::Blocks，新建空白C项目，把全部代码粘贴进去。</p>
+<p>2、编译运行，程序会输出两段内容：完整解密字符串，以及去除填充字符@之后的最终flag。</p>
+<p>原理：分组换位密码，按密钥数字做字符位置置换；@为填充字符，解密完成需要剔除。</p>
+
 </div>
 </body>
 </html></p >
