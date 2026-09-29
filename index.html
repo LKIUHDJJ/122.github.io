@@ -1,46 +1,127 @@
 <!DOCTYPE html>
-<html>
-<head>
-<style>
-h1 { font-size:40px; }
-li { margin:12px 0; font-size:20px; }
-a { color:#2244bb; text-decoration:none; }
-</style>
-</head>
-<body>
-<h1>博客列表</h1>
-<ul>
-<li><a href="task1.html">Task1 第一个帖子</a ></li>
-<li><a href="task2.html">Task2 滑稽</a></li>
-<li><a href="task3.html">Task3 alert</a></li>
-<li><a href="task4.html">Task4 你必须让他停下</a></li>
-<li><a href="task5.html">Task5 头等舱</a></li>
-<li><a href="task6.html">Task6 瑞士军刀</a></li>
-<li><a href="task7.html">Task7 .!?</a></li>
-<li><a href="task8.html">Task8 ok</a></li>
-<li><a href="task9.html">Task9 散乱的密文</a></li>
-<li><a href="task10.html">Task10 聪明的小羊</a></li>
-<li><a href="task11.html">Task11 这不是 md5</a ></li>
-<li><a href="task12.html">Task12 贝斯家族</a></li>
-<li><a href="task13.html">Task13 矛盾</a></li>
-<li><a href="task14.html">Task14 把猪困在猪圈里</a></li>
-<li><a href="task15.html">Task15 备份是个好习惯</a></li>
-<li><a href="task16.html">Task16 隐写</a></li>
-<li><a href="task17.html">Task17 telnet</a></li>
-<li><a href="task18.html">Task18 眼见为实</a></li>
-<li><a href="task19.html">Task19 你以为是md5吗</a></li>
-<li><a href="task20.html">Task20 多种方法解决</a></li>  
-<li><a href="task21.html">Task21 变量1</a ></li>
-<li><a href="task22.html">Task22 一段新闻</a></li>
-<li><a href="task23.html">Task23 Linux2</a></li>
-<li><a href="task24.html">Task24 来自宇宙的信号</a></li>
-<li><a href="task25.html">Task25 easy_nbt</a></li>
-<li><a href="task26.html">Task26 富强民主</a></li>
-<li><a href="task27.html">Task27 [+-<>]</a></li>
-<li><a href="task28.html">Task28 计算器</a></li>
-<li><a href="task29.html">Task29 GET</a></li>
-<li><a href="task30.html">Task30 /.-</a></li>  
-<li><a href="task31.html">Task31 这是一张单纯的图片</a></li>  
-</ul>
-</body>
-</html>
+ <html lang="zh-CN">
+ <head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Blog</title>
+ <script src="https://cdn.tailwindcss.com"></script>
+ <script>
+ tailwind.config = {
+   theme: {
+     extend: {
+       colors: {
+         dark: '#111111',
+         card: '#1C1C1E',
+       }
+     }
+   }
+ }
+ </script>
+ <style>
+ body {
+   background-color: #111111;
+ }
+ .card-item:active {
+   background-color:#28282b;
+ }
+ </style>
+ </head>
+ <body class="bg-dark text-gray-100 max-w-xl mx-auto px-3 py-4">
+   <h1 class="text-xl font-bold mb-6">文章列表</h1>
+   <div class="space-y-4">
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task1.html'">
+       <h2 class="text-lg font-semibold">Task1 第一个帖子</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task2.html'">
+       <h2 class="text-lg font-semibold">Task2 滑稽</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task3.html'">
+       <h2 class="text-lg font-semibold">Task3 alert</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task4.html'">
+       <h2 class="text-lg font-semibold">Task4 你必须让他停下</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task5.html'">
+       <h2 class="text-lg font-semibold">Task5 头等舱</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task6.html'">
+       <h2 class="text-lg font-semibold">Task6 瑞士军刀</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task7.html'">
+       <h2 class="text-lg font-semibold">Task7 .!?</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task8.html'">
+       <h2 class="text-lg font-semibold">Task8 ok</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task9.html'">
+       <h2 class="text-lg font-semibold">Task9 散乱的密文</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task10.html'">
+       <h2 class="text-lg font-semibold">Task10 聪明的小羊</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task11.html'">
+       <h2 class="text-lg font-semibold">Task11 这不是 md5</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task12.html'">
+       <h2 class="text-lg font-semibold">Task12 贝斯家族</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task13.html'">
+       <h2 class="text-lg font-semibold">Task13 矛盾</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task14.html'">
+       <h2 class="text-lg font-semibold">Task14 把猪困在猪圈里</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task15.html'">
+       <h2 class="text-lg font-semibold">Task15 备份是个好习惯</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task16.html'">
+       <h2 class="text-lg font-semibold">Task16 隐写</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task17.html'">
+       <h2 class="text-lg font-semibold">Task17 telnet</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task18.html'">
+       <h2 class="text-lg font-semibold">Task18 眼见为实</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task19.html'">
+       <h2 class="text-lg font-semibold">Task19 你以为是md5吗</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task20.html'">
+       <h2 class="text-lg font-semibold">Task20 多种方法解决</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task21.html'">
+       <h2 class="text-lg font-semibold">Task21 变量1</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task22.html'">
+       <h2 class="text-lg font-semibold">Task22 一段新闻</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task23.html'">
+       <h2 class="text-lg font-semibold">Task23 Linux2</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task24.html'">
+       <h2 class="text-lg font-semibold">Task24 来自宇宙的信号</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task25.html'">
+       <h2 class="text-lg font-semibold">Task25 easy_nbt</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task26.html'">
+       <h2 class="text-lg font-semibold">Task26 富强民主</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task27.html'">
+       <h2 class="text-lg font-semibold">Task27 [+-<>]</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task28.html'">
+       <h2 class="text-lg font-semibold">Task28 计算器</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task29.html'">
+       <h2 class="text-lg font-semibold">Task29 GET</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task30.html'">
+       <h2 class="text-lg font-semibold">Task30 /.-</h2>
+     </div>
+     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task31.html'">
+       <h2 class="text-lg font-semibold">Task31 这是一张单纯的图片</h2>
+     </div>
+   </div>
+ </body>
+ </html>
