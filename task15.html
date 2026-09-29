@@ -7,104 +7,73 @@
 <p><!DOCTYPE html>
 <html>
 <body>
-# Bugku CTF｜备份是个好习惯 WEB WriteUp
+<p>Bugku CTF《备份是个好习惯》WEB题目基础信息</p>
+<p>题目名称：备份是个好习惯</p>
+<p>题目类型：WEB</p>
+<p>题目提示：无</p>
+<p>题目描述：备份文件泄露，结合PHP变量变量与md5弱比较漏洞获取flag</p>
 
- 题目信息
+<p>审题分析：</p>
+<p>题目名字提示备份文件泄露。PHP 网站常见备份后缀有 .bak、.swp、.~。</p>
+<p>访问靶场地址，尝试备份文件 index.php.bak，下载得到 PHP 源代码。</p>
 
- - 题目：备份是个好习惯
- - 分类：WEB
+<p>拿到的核心源码：</p>
+<p>&lt;?php</p>
+<p>include "flag.php";</p>
+<p>$key1 = $_GET['key1'];</p>
+<p>$key2 = $_GET['key2'];</p>
+<p>foreach($_GET as $k=&gt;$v){</p>
+<p>    $newk = str_replace("key","",$k);</p>
+<p>    $$newk = $v;</p>
+<p>}</p>
+<p>if($key1 != $key2 &amp;&amp; md5($key1) == md5($key2)){</p>
+<p>    echo $flag;</p>
+<p>}</p>
+<p>else{</p>
+<p>    echo "no~";</p>
+<p>}</p>
+<p>?&gt;</p>
 
+<p>代码逻辑拆解：</p>
+<p>1. 遍历所有 GET 参数，使用str_replace("key","",$k)，把参数名中所有子串key全部替换为空字符串；</p>
+<p>2. $$newk 是 PHP变量变量，把处理后的字符串当作变量名，赋值对应参数值；</p>
+<p>3. 两个条件必须同时成立：</p>
+<p>- $key1 != $key2：两个变量的值不能相等</p>
+<p>- md5($key1) == md5($key2)：md5 做弱相等比较（==）</p>
+<p>直接传 ?key1=xxx&amp;key2=yyy 是无效的：</p>
+<p>参数名key1经过str_replace("key","")处理后变成1，只会生成$1变量，不会生成$key1。</p>
 
-## 一、审题分析
+<p>参数名绕过思路：</p>
+<p>构造参数名：kkeyey1、kkeyey2</p>
+<p>- kkeyey1：字符串内部包含子串key，str_replace删除key之后，剩下key1；</p>
+<p>- $$newk 就等价于 $key1 = 参数值，成功给目标变量赋值；</p>
+<p>- 同理 kkeyey2 → 处理得到 key2。</p>
 
-题目名字提示**备份文件泄露**。PHP 网站常见备份后缀有 `.bak`、`.swp`、`.~`。
-访问靶场地址，尝试备份文件 `index.php.bak`，下载得到 PHP 源代码。
+<p>两种 Payload 方案：</p>
+<p>方案 1：0e 哈希碰撞（字符串）</p>
+<p>PHP 弱比较中，以0e开头的 md5 哈希，会被识别为科学计数法数字 0，0exxxx == 0eyyyy结果为 true。</p>
+<p>可用字符串：</p>
+<p>- QNKCDZO → md5：0e830400451993494058024219903391</p>
+<p>- 240610708 → md5：0e462097431906509011569887364947</p>
+<p>完整Payload：/?kkeyey1=QNKCDZO&amp;kkeyey2=240610708</p>
 
-### 拿到的核心源码
+<p>方案 2：数组绕过（更通用）</p>
+<p>md5()函数不能处理数组，传入数组返回null；null == null为true；两个数组对象本身不相等，满足$key1 != $key2。</p>
+<p>Payload：/?kkeyey1[]=1&amp;kkeyey2[]=2</p>
 
-```
-<?php
-include "flag.php";
-$key1 = $_GET['key1'];
-$key2 = $_GET['key2'];
+<p>原理知识点总结：</p>
+<p>1. 备份文件泄露：.bak备份源码泄露，拿到后端逻辑；</p>
+<p>2. str_replace字符串删除 + PHP 变量变量$$，构造参数名绕过过滤；</p>
+<p>3. PHP ==弱类型比较漏洞：</p>
+<p>- 0e 开头哈希科学计数法相等；</p>
+<p>- md5 传入数组返回 null，null 弱相等；</p>
+<p>4. ==松散比较会自动转换类型；===强比较同时校验值与类型，该漏洞直接失效。</p>
 
-foreach($_GET as $k=>$v){
-    $newk = str_replace("key","",$k);
-    $$newk = $v;
-}
-
-if($key1 != $key2 && md5($key1) == md5($key2)){
-    echo $flag;
-}
-else{
-    echo "no~";
-}
-?>
-```
-
-### 代码逻辑拆解
-
-1. 遍历所有 GET 参数，使用`str_replace("key","",$k)`，**把参数名中所有子串`key`全部替换为空字符串**；
-2. `$$newk` 是 PHP**变量变量**，把处理后的字符串当作变量名，赋值对应参数值；
-3. 两个条件必须同时成立：
-   - `$key1 != $key2`：两个变量的值不能相等
-   - `md5($key1) == md5($key2)`：md5 做**弱相等比较（==）**
-
-> 
-> 直接传 `?key1=xxx&key2=yyy` 是无效的：
-> 参数名`key1`经过`str_replace("key","")`处理后变成`1`，只会生成`$1`变量，**不会生成`$key1`**。
-
-## 二、参数名绕过思路
-
-构造参数名：`kkeyey1`、`kkeyey2`
-
-- `kkeyey1`：字符串内部包含子串`key`，`str_replace`删除`key`之后，剩下`key1`；
-- `$$newk` 就等价于 `$key1 = 参数值`，成功给目标变量赋值；
-- 同理 `kkeyey2` → 处理得到 `key2`。
-
-## 三、两种 Payload 方案
-
-### 方案 1：0e 哈希碰撞（字符串）
-
-PHP 弱比较中，以`0e`开头的 md5 哈希，会被识别为科学计数法数字 0，`0exxxx == 0eyyyy`结果为 true。
-
-可用字符串：
-
-- `QNKCDZO` → md5：`0e830400451993494058024219903391`
-- `240610708` → md5：`0e462097431906509011569887364947`
-
-完整 Payload：
-
-```
-/?kkeyey1=QNKCDZO&kkeyey2=240610708
-```
-
-### 方案 2：数组绕过（更通用）
-
-`md5()`函数不能处理数组，传入数组返回`null`；`null == null`为 true；两个数组对象本身不相等，满足`$key1 != $key2`。
-
-Payload：
-
-```
-/?kkeyey1[]=1&kkeyey2[]=2
-```
-
-## 四、原理知识点总结
-
-1. **备份文件泄露**：`.bak`备份源码泄露，拿到后端逻辑；
-2. `str_replace`字符串删除 + PHP 变量变量`$$`，构造参数名绕过过滤；
-3. PHP `==`弱类型比较漏洞：
-   - 0e 开头哈希科学计数法相等；
-   - md5 传入数组返回 null，null 弱相等；
-4. `==`松散比较会自动转换类型；`===`强比较同时校验值与类型，该漏洞直接失效。
-
-## 五、踩坑点
-
-- ❌ 直接使用`key1`、`key2`作为 get 参数名，会被替换，无法生成`$key1`、`$key2`；
-- ❌ 不要混淆`==`和`===`，本题是双等号弱比较；
-- ✅ 参数名必须写成`kkeyey1`，保证删除`key`子串后得到`key1`。
-
-访问 payload 后页面输出 flag，附带 GBK 乱码 “鍙栧緱 flag”，乱码是页面编码问题，不属于 flag。
+<p>踩坑点：</p>
+<p>❌ 直接使用key1、key2作为 get 参数名，会被替换，无法生成$key1、$key2；</p>
+<p>❌ 不要混淆==和===，本题是双等号弱比较；</p>
+<p>✅ 参数名必须写成kkeyey1，保证删除key子串后得到key1。</p>
+<p>访问 payload 后页面输出 flag，附带 GBK 乱码 “鍙栧緱 flag”，乱码是页面编码问题，不属于 flag。</p>
 
 </div>
 </body>
