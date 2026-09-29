@@ -7,16 +7,18 @@
 <p><!DOCTYPE html>
 <html>
 <body>
-Bugku 眼见非实 MISC Writeup
+<p>Bugku CTF《眼见非实》MISC题目基础信息</p>
+<p>题目名称：眼见非实</p>
+<p>题目类型：MISC 杂项</p>
+<p>题目提示：flag{}写blog</p>
+<p>题目描述：文件后缀伪装，docx实为zip压缩包，解压xml查找flag</p>
 
-题目：眼见非实 MISC 题
-
-解题步骤
-下载文件，文件名是 眼见非实.docx，直接用 Word 打开会报错打不开。
-眼见非实：后缀是 docx，但本质不是 Word 文档。用十六进制编辑器 / 记事本看文件开头是 PK（十六进制50 4B 03 04），这是ZIP 压缩包的文件头。
-将文件名后缀从 .docx 修改为 .zip，解压。
-解压后得到文件夹，进入 word 目录，打开 document.xml。
-在 xml 文件里直接搜索flag，找到结果。
+<p>解题步骤：</p>
+<p>下载文件，文件名是 眼见非实.docx，直接用 Word 打开会报错打不开。</p>
+<p>眼见非实：后缀是 docx，但本质不是 Word 文档。用十六进制编辑器 / 记事本看文件开头是 PK（十六进制50 4B 03 04），这是ZIP 压缩包的文件头。</p>
+<p>将文件名后缀从 .docx 修改为 .zip，解压。</p>
+<p>解压后得到文件夹，进入 word 目录，打开 document.xml。</p>
+<p>在 xml 文件里直接搜索flag，找到结果。</p>
 </div>
 </body>
 </html></p >
