@@ -6,13 +6,40 @@
 <p><!DOCTYPE html>
 <html>
 <body>
+<p>Bugku Web｜你必须让他停下 Writeup</p>
+<p>题目信息</p>
+<p>平台：Bugku CTF</p>
+<p>分类：Web</p>
+<p>分值：10 分</p>
+<p>考点：JS 自动刷新、随机返回页面、源码隐藏 flag</p>
 
- 解题步骤
-1. 点击延时场景，访问靶场链接。
-2. 页面加载瞬间，按下F12打开开发者工具。
-3. 使用F8暂停JavaScript脚本执行，页面停止自动刷新。
-4. 查看页面源代码，搜索flag关键字，找到flag。
-5. 将flag复制回到题目页面提交。
+<p>现象：</p>
+<p>访问页面，网页不停自动刷新。源码里有一段 JS 定时刷新代码：</p>
+<pre>function myrefresh(){     window.location.reload(); } setTimeout('myrefresh()',500); </pre>
+<p>每 500ms 刷新一次，浏览器肉眼根本来不及复制 flag。 后端每次请求随机返回一张图片，只有当返回10.jpg的时候，页面源码中会多出一个style="display:none"的 a 标签，里面存放 flag（浏览器不显示，但源码存在）。</p>
+
+<p>解法一：浏览器禁用 JS（新手最简单）</p>
+<p>Chrome/Edge 打开靶机页面</p>
+<p>网站设置 → JavaScript → 禁止此网站运行 JS</p>
+<p>页面不再自动刷新，此时手动 F5 刷新页面</p>
+<p>每次刷新后按Ctrl+U查看源码，看 img 标签是否是10.jpg</p>
+<p>如果是10.jpg，往下翻源码找到隐藏 a 标签，提取flag{xxx}；不是就继续 F5 重试</p>
+<p>原理：禁用 JS 后location.reload()失效，页面不会自动跳走，我们可以手动控制刷新时机。</p>
+
+<p>解法二：Burp Suite Repeater（推荐，CTF 常用）</p>
+<p>Burp 开启代理，浏览器抓包，访问题目页面</p>
+<p>把 GET 请求发送到 Repeater（重放器）</p>
+<p>反复点Send发包，看 Response 返回的 HTML</p>
+<p>当响应里&lt;img src="10.jpg"&gt;出现时，在响应源码找到隐藏 a 标签内的 flag</p>
+<p>&lt;a style="display:none"&gt;flag{xxxxxx}&lt;/a&gt; </p>
+<p>display:none表示页面上看不见，但源码存在。</p>
+
+<p>知识点总结：</p>
+<p>setTimeout + location.reload() JS 实现页面自动刷新；</p>
+<p>display:none CSS 隐藏元素：源码存在，页面不渲染；</p>
+<p>后端随机页面，不是每次请求都带 flag；</p>
+<p>前端 JS 的刷新逻辑，可以通过禁用 JS 绕过，或者抓包直接看 HTTP 响应（推荐抓包，不受前端 JS 控制）。</p>
+
 </div>
 </body>
 </html></p >
