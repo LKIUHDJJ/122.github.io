@@ -7,12 +7,42 @@
 <p><!DOCTYPE html>
 <html>
 <body>
- 解题步骤
-1. 启动靶场，访问靶场链接。
-2. F12打开开发者工具，切换到【网络】面板。
-3. 刷新页面，点击生成的请求记录。
-4. 在右侧【响应头】中查找，找到flag字符串。
-5. 复制完整flag，回到题目页面提交。
+ <p>Bugku Web｜头等舱 Writeup</p>
+<p>题目信息</p>
+<p>平台：Bugku CTF</p>
+<p>分类：Web</p>
+<p>分值：15 分</p>
+<p>考点：HTTP 响应头泄露 flag</p>
+
+<p>页面现象：访问页面只显示 什么也没有。</p>
+<p>Ctrl+U 看网页源代码，找不到 flag。题目名字 “头等舱” 暗示看头部（header）。</p>
+
+<p>解法 1：浏览器 F12（不用 bp，新手优先）</p>
+<p>打开靶机页面，按 F12 打开开发者工具</p>
+<p>切换到「网络 (Network)」标签，刷新页面</p>
+<p>点击第一条 GET 请求，切换到「响应头 (Response Headers)」</p>
+<p>在响应头列表里直接找到 flag 字段，复制提交</p>
+<p>⚠️注意：不是请求头，是响应头，服务器返回给浏览器的头部。</p>
+
+<p>解法 2：Burp Suite 抓包</p>
+<p>Burp 开启代理，浏览器访问页面，抓到 GET 请求</p>
+<p>将报文发送到 Repeater，Send 发包</p>
+<p>在 Response 的 Headers 区域，可以直接看到 flag，它不在 HTML 正文里，藏在 HTTP 头部行中</p>
+<pre>HTTP/1.1 200 OK
+Server: nginx
+Date: xxx
+flag{xxxxxxxxx}      # flag在这里！
+Content‑Type: text/html
+……
+&lt;html&gt;什么也没有。&lt;/html&gt;
+</pre>
+
+<p>知识点总结：</p>
+<p>HTTP 分为响应头 Headers和响应 Body 网页正文。</p>
+<p>浏览器只渲染 Body 部分，响应头不会展示在页面上。Ctrl+U只能看 Body，看不到响应头。</p>
+<p>提示词：题目名字带 “头”、header，优先检查网络响应头。</p>
+<p>坑：很多人反复看页面源码，找不到 flag，就是忽略了 HTTP 头部。</p>
+
 </div>
 </body>
 </html></p >
