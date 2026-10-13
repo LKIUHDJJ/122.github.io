@@ -1,127 +1,342 @@
 <!DOCTYPE html>
- <html lang="zh-CN">
- <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Blog</title>
- <script src="https://cdn.tailwindcss.com"></script>
- <script>
- tailwind.config = {
-   theme: {
-     extend: {
-       colors: {
-         dark: '#111111',
-         card: '#1C1C1E',
-       }
-     }
-   }
- }
- </script>
- <style>
- body {
-   background-color: #111111;
- }
- .card-item:active {
-   background-color:#28282b;
- }
- </style>
- </head>
- <body class="bg-dark text-gray-100 max-w-xl mx-auto px-3 py-4">
-   <h1 class="text-xl font-bold mb-6">文章列表</h1>
-   <div class="space-y-4">
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task1.html'">
-       <h2 class="text-lg font-semibold">Task1 第一个帖子</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task2.html'">
-       <h2 class="text-lg font-semibold">Task2 滑稽</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task3.html'">
-       <h2 class="text-lg font-semibold">Task3 alert</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task4.html'">
-       <h2 class="text-lg font-semibold">Task4 你必须让他停下</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task5.html'">
-       <h2 class="text-lg font-semibold">Task5 头等舱</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task6.html'">
-       <h2 class="text-lg font-semibold">Task6 瑞士军刀</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task7.html'">
-       <h2 class="text-lg font-semibold">Task7 .!?</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task8.html'">
-       <h2 class="text-lg font-semibold">Task8 ok</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task9.html'">
-       <h2 class="text-lg font-semibold">Task9 散乱的密文</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task10.html'">
-       <h2 class="text-lg font-semibold">Task10 聪明的小羊</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task11.html'">
-       <h2 class="text-lg font-semibold">Task11 这不是 md5 2026.9.25</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task12.html'">
-       <h2 class="text-lg font-semibold">Task12 贝斯家族 2026.9.25</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task13.html'">
-       <h2 class="text-lg font-semibold">Task13 矛盾 2026.9.25</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task14.html'">
-       <h2 class="text-lg font-semibold">Task14 把猪困在猪圈里2026.9.26</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task15.html'">
-       <h2 class="text-lg font-semibold">Task15 备份是个好习惯 2026.9.26</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task16.html'">
-       <h2 class="text-lg font-semibold">Task16 隐写 2026.9.26</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task17.html'">
-       <h2 class="text-lg font-semibold">Task17 telnet 2026.9.26</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task18.html'">
-       <h2 class="text-lg font-semibold">Task18 眼见为实 2026.9.27</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task19.html'">
-       <h2 class="text-lg font-semibold">Task19 你以为是md5吗 2026.9.27</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task20.html'">
-       <h2 class="text-lg font-semibold">Task20 多种方法解决 2026.9.27</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task21.html'">
-       <h2 class="text-lg font-semibold">Task21 变量1 2026.9.27</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task22.html'">
-       <h2 class="text-lg font-semibold">Task22 一段新闻 2026.9.28</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task23.html'">
-       <h2 class="text-lg font-semibold">Task23 Linux2 2026.9.28</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task24.html'">
-       <h2 class="text-lg font-semibold">Task24 来自宇宙的信号 2026.9.28</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task25.html'">
-       <h2 class="text-lg font-semibold">Task25 easy_nbt2026.9.28</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task26.html'">
-       <h2 class="text-lg font-semibold">Task26 富强民主 2026.9.28</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task27.html'">
-       <h2 class="text-lg font-semibold">Task27 [+-<>] 2026.9.28</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task28.html'">
-       <h2 class="text-lg font-semibold">Task28 计算器2026.9.29</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task29.html'">
-       <h2 class="text-lg font-semibold">Task29 GET 2026.9.29</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task30.html'">
-       <h2 class="text-lg font-semibold">Task30 /.- 2026.9.29</h2>
-     </div>
-     <div class="card-item bg-card rounded-xl p-4 cursor-pointer" onclick="location.href='task31.html'">
-       <h2 class="text-lg font-semibold">Task31 这是一张单纯的图片 2026.9.29</h2>
-     </div>
-   </div>
- </body>
- </html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#111111',
+                        card: '#1C1C1E',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #111111;
+        }
+        .card-item.active {
+            background-color:#28282b;
+        }
+    </style>
+</head>
+<body class="bg-dark text-gray-100 max-w-xl mx-auto px-3 py-4">
+    <h1 class="text-xl font-bold mb-6">文章列表</h1>
+
+    <!-- 搜索框 -->
+    <input 
+        id="searchInput"
+        type="text" 
+        placeholder="搜索文章关键词..."
+        class="w-full bg-card px-4 py-2 rounded-xl mb-4 outline-none focus:ring-1 focus:ring-gray-400"
+    >
+
+    <!-- 标签区域 -->
+    <div id="tagBox" class="flex flex-wrap gap-2 mb-6">
+        <button data-tag="all" class="tag-btn px-3 py-1 rounded-lg bg-gray-600 hover:bg-gray-500">全部</button>
+        <button data-tag="bugku" class="tag-btn px-3 py-1 rounded-lg bg-card hover:bg-gray-600">bugku</button>
+        <button data-tag="笔记" class="tag-btn px-3 py-1 rounded-lg bg-card hover:bg-gray-600">笔记</button>
+        <button data-tag="笔记" class="tag-btn px-3 py-1 rounded-lg bg-card hover:bg-gray-600">CTFhub</button>
+    </div>
+
+    <!-- 文章列表 -->
+    <div id="articleList" class="space-y-4">
+        <div class="card-item bg-card rounded-xl p-4 cursor-pointer" 
+             data-tags="笔记"
+             onclick="location.href='task1.html'">
+            <h2 class="text-lg font-semibold">Task1 第一个帖子</h2>
+            <div class="flex gap-2 mt-2">
+                <span class="text-xs bg-gray-700 px-2 py-1 rounded">笔记</span>
+            </div>
+        </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task2.html'">
+        <h2 class="text-lg font-semibold">Task2 滑稽</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task3.html'">
+        <h2 class="text-lg font-semibold">Task3 alert</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task4.html'">
+        <h2 class="text-lg font-semibold">Task4 你必须让他停下</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task5.html'">
+        <h2 class="text-lg font-semibold">Task5 头等舱</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task6.html'">
+        <h2 class="text-lg font-semibold">Task6 瑞士军刀</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task7.html'">
+        <h2 class="text-lg font-semibold">Task7 !?/?</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task8.html'">
+        <h2 class="text-lg font-semibold">Task8 ok</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task9.html'">
+        <h2 class="text-lg font-semibold">Task9 散乱的密文</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task10.html'">
+        <h2 class="text-lg font-semibold">Task10 聪明的小羊</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task11.html'">
+        <h2 class="text-lg font-semibold">Task11 这不是 md5 2026.9.25</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task12.html'">
+        <h2 class="text-lg font-semibold">Task12 贝斯家族 2026.9.25</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task13.html'">
+        <h2 class="text-lg font-semibold">Task13 矛盾 2026.9.25</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task14.html'">
+        <h2 class="text-lg font-semibold">Task14 把猪困在猪圈里2026.9.26</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task15.html'">
+        <h2 class="text-lg font-semibold">Task15 备份是个好习惯 2026.9.26</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task16.html'">
+        <h2 class="text-lg font-semibold">Task16 隐写 2026.9.26</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task17.html'">
+        <h2 class="text-lg font-semibold">Task17 telnet 2026.9.26</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task18.html'">
+        <h2 class="text-lg font-semibold">Task18 眼见为实 2026.9.27</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task19.html'">
+        <h2 class="text-lg font-semibold">Task19 你以为是md5吗 2026.9.27</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task20.html'">
+        <h2 class="text-lg font-semibold">Task20 多种方法解决 2026.9.27</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task21.html'">
+        <h2 class="text-lg font-semibold">Task21 变量1 2026.9.27</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task22.html'">
+        <h2 class="text-lg font-semibold">Task22 一段新闻 2026.9.28</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task23.html'">
+        <h2 class="text-lg font-semibold">Task23 Linux2 2026.9.28</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task24.html'">
+        <h2 class="text-lg font-semibold">Task24 来自宇宙的信号 2026.9.28</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task25.html'">
+        <h2 class="text-lg font-semibold">Task25 easy_nbt2026.9.28</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task26.html'">
+        <h2 class="text-lg font-semibold">Task26 富强民主 2026.9.28</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task27.html'">
+        <h2 class="text-lg font-semibold">Task27 [+-×] 2026.9.28</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task28.html'">
+        <h2 class="text-lg font-semibold">Task28 计算器2026.9.29</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task29.html'">
+        <h2 class="text-lg font-semibold">Task29 GET 2026.9.29</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task30.html'">
+        <h2 class="text-lg font-semibold">Task30 / .- 2026.9.29</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+    <div class="card-item bg-card rounded-xl p-4 cursor-pointer"
+         data-tags="bugku"
+         onclick="location.href='task31.html'">
+        <h2 class="text-lg font-semibold">Task31 这是一张单纯的图片 2026.9.29</h2>
+        <div class="flex gap-2 mt-2">
+            <span class="text-xs bg-gray-700 px-2 py-1 rounded">bugku</span>
+        </div>
+    </div>
+</div>
+    </div>
+
+<script>
+    // 获取元素
+    const searchInput = document.getElementById('searchInput');
+    const articleList = document.getElementById('articleList');
+    const tagBtns = document.querySelectorAll('.tag-btn');
+    const cards = document.querySelectorAll('.card-item');
+    let currentTag = "all";
+
+    // 筛选函数：关键词 + 标签同时生效
+    function filterArticles() {
+        const keyword = searchInput.value.trim().toLowerCase();
+        cards.forEach(card => {
+            const title = card.querySelector('h2').innerText.toLowerCase();
+            const tags = card.dataset.tags.split(',');
+
+            const matchKeyword = title.includes(keyword);
+            const matchTag = currentTag === 'all' || tags.includes(currentTag);
+            
+            if(matchKeyword && matchTag){
+                card.style.display = "block";
+            }else{
+                card.style.display = "none";
+            }
+        })
+    }
+
+    // 搜索框监听输入
+    searchInput.addEventListener('input', filterArticles);
+
+    // 标签点击事件
+    tagBtns.forEach(btn=>{
+        btn.onclick = function(){
+            // 重置按钮样式
+            tagBtns.forEach(b=>b.classList.remove('bg-gray-600'));
+            this.classList.add('bg-gray-600');
+            currentTag = this.dataset.tag;
+            filterArticles();
+        }
+    })
+</script>
+</body>
+</html>
