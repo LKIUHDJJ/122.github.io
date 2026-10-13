@@ -1,45 +1,64 @@
 <!DOCTYPE html>
-<html>
-<body>
-<h1>Task11 第十一个帖子 这不是 md5
-</h1>
-<hr>
-<p><!DOCTYPE html>
-<html>
-<body>
-<p>Bugku CTF《这不是 md5》Crypto题目基础信息</p>
-<p>题目名称：这不是 md5</p>
-<p>题目类型：Crypto 密码学</p>
-<p>题目提示：无</p>
-<p>题目描述：666c61677b616537333538376261353662616566357d</p>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Task11 这不是 md5</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-100 p-6 max-w-4xl mx-auto">
+    <div class="bg-card rounded-xl p-6">
+        <h1 class="text-2xl font-bold mb-2">Task11 第十一个帖子<br>这不是 md5</h1>
+        <hr class="border-gray-700 my-4">
 
-<p>审题：</p>
-<p>坑点：很多同学第一眼会误以为这是 MD5 哈希值，直接拿去 md5 解密网站跑，肯定得不到结果，题目名字已经暗示我们，它不是 MD5</p>
-<p>密文字符串：666c61677b616537333538376261353662616566357d</p>
+        <h3 class="text-xl font-semibold mb-3">Bugku Crypto | 这不是 md5 Writeup</h3>
 
-<p>判断编码格式：</p>
-<p>字符集合 0‑9 a‑f，这是典型十六进制（Hex，16 进制）编码特征。</p>
-<p>十六进制编码规则：每两个十六进制字符代表 1 字节 ASCII 字符。</p>
-<p>把串分组，每 2 个字符一组：66 6c 61 67 7b 61 65 37 33 35 38 37 62 61 35 36 62 61 65 66 35 7d</p>
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">题目基础信息</h4>
+            <p>题目名称：这不是 md5</p >
+            <p>题目类型：Crypto 密码学</p >
+            <p>题目提示：无</p >
+            <p>题目描述：<code class="bg-gray-700 px-1 rounded">666c61677b616537333538376261353662616566357d</code></p >
+        </div>
 
-<p>ASCII码对照解析：</p>
-<p>66 → f，6c → l，61 → a，67 → g，7b → {，61 → a，65 → e，37 → 7，33 → 3，35 → 5，38 → 8，37 → 7，62 → b，61 → a，35 → 5，36 → 6，62 → b，61 → a，65 → e，66 → f，35 → 5，7d → }</p>
-<p>拼接结果得到flag。</p>
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">审题</h4>
+            <p>坑点：很多同学第一眼会误以为这是 MD5 哈希值，直接拿去 md5 解密网站跑，肯定得不到结果，题目名字已经暗示我们，它不是 MD5</p >
+            <p>密文字符串：<code class="bg-gray-700 px-1 rounded">666c61677b616537333538376261353662616566357d</code></p >
+        </div>
 
-<p>实操工具实现：</p>
-<p>方法1：在线工具解码，找 Hex 转 ASCII 工具，输入字符串直接解码。</p>
-<p>注意：编码选择ISO‑8859‑1 / UTF‑8，本题字符都是可见 ASCII，两种都可以。</p>
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">判断编码格式</h4>
+            <p>字符集合 0‑9 a‑f，这是典型十六进制（Hex，16 进制）编码特征。</p >
+            <p>十六进制编码规则：每两个十六进制字符代表 1 字节 ASCII 字符。</p >
+            <p>把串分组，每 2 个字符一组：<code class="bg-gray-700 px-1 rounded">66 6c 61 67 7b 61 65 37 33 35 38 37 62 61 35 36 62 61 65 66 35 7d</code></p >
+        </div>
 
-<p>踩坑记录：</p>
-<p>❌ 错误操作1：复制字符串跑 MD5 解密，不可能出结果；</p>
-<p>❌ 错误操作2：当成 Base64 解码，字符集中含有6c等，base64 会乱码；</p>
-<p>✅ 正确思路：观察字符集 0‑f，结合题目名字，判断为十六进制编码，直接 Hex 转 ASCII。</p>
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">ASCII码对照解析</h4>
+            <p>66 → f，6c → l，61 → a，67 → g，7b → {，61 → a，65 → e，37 → 7，33 → 3，35 → 5，38 → 8，37 → 7，62 → b，61 → a，35 → 5，36 → 6，62 → b，61 → a，65 → e，66 → f，35 → 5，7d → }</p >
+            <p>拼接结果得到flag。</p >
+        </div>
 
-<p>最终flag：flag{ae73587ba56baef5}</p>
-</div>
-</body>
-</html></p >
-<br>
-<a href="index.html">← 返回博客帖子列表</a >
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">实操工具实现</h4>
+            <p>方法1：在线工具解码，找 Hex 转 ASCII 工具，输入字符串直接解码。</p >
+            <p>注意：编码选择ISO‑8859‑1 / UTF‑8，本题字符都是可见 ASCII，两种都可以。</p >
+        </div>
+
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">踩坑记录</h4>
+            <p>❌ 错误操作1：复制字符串跑 MD5 解密，不可能出结果；</p >
+            <p>❌ 错误操作2：当成 Base64 解码，字符集中含有6c等，base64 会乱码；</p >
+            <p>✅ 正确思路：观察字符集 0‑f，结合题目名字，判断为十六进制编码，直接 Hex 转 ASCII。</p >
+        </div>
+
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">最终flag</h4>
+            <p><code class="bg-gray-700 px-1 rounded text-green-400">flag{ae73587ba56baef5}</code></p >
+        </div>
+
+        <br>
+        <a href=" " class="text-blue-400 hover:underline">← 返回博客帖子列表</a >
+    </div>
 </body>
 </html>
