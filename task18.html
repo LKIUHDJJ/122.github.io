@@ -1,28 +1,62 @@
 <!DOCTYPE html>
-<html>
-<body>
-<h1>Task18 第十八个帖子 眼见为实
-</h1>
-<hr>
-<p><!DOCTYPE html>
-<html>
-<body>
-<p>Bugku CTF《眼见非实》MISC题目基础信息</p>
-<p>题目名称：眼见非实</p>
-<p>题目类型：MISC 杂项</p>
-<p>题目提示：flag{}写blog</p>
-<p>题目描述：文件后缀伪装，docx实为zip压缩包，解压xml查找flag</p>
-
-<p>解题步骤：</p>
-<p>下载文件，文件名是 眼见非实.docx，直接用 Word 打开会报错打不开。</p>
-<p>眼见非实：后缀是 docx，但本质不是 Word 文档。用十六进制编辑器 / 记事本看文件开头是 PK（十六进制50 4B 03 04），这是ZIP 压缩包的文件头。</p>
-<p>将文件名后缀从 .docx 修改为 .zip，解压。</p>
-<p>解压后得到文件夹，进入 word 目录，打开 document.xml。</p>
-<p>在 xml 文件里直接搜索flag，找到结果。</p>
-</div>
-</body>
-</html></p >
-<br>
-<a href="index.html">← 返回博客帖子列表</a >
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Task18 眼见为实</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        card: '#1f2937',
+      },
+    }
+  }
+}
+</script>
+</head>
+<body class="bg-gray-900 text-gray-100 p-6 max-w-4xl mx-auto">
+    <div class="bg-card rounded-xl p-6">
+        <h1 class="text-2xl font-bold mb-2">Task18 第十八个帖子<br>眼见为实</h1>
+        <hr class="border-gray-700 my-4">
+        <h3 class="text-xl font-semibold mb-3">Bugku CTF《眼见非实》MISC Writeup</h3>
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">题目基础信息</h4>
+            <p>题目名称：眼见非实</p>
+            <p>题目类型：MISC 杂项</p>
+            <p>题目提示：flag{}写blog</p>
+            <p>题目描述：文件后缀伪装，docx实为zip压缩包，解压xml查找flag</p>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">审题分析</h4>
+            <p>下载文件，文件名是 眼见非实.docx，直接用 Word 打开会报错打不开。</p>
+            <p class="mt-2">眼见非实：后缀是 docx，但本质不是 Word 文档。用十六进制编辑器 / 记事本看文件开头是 PK（十六进制50 4B 03 04），这是ZIP 压缩包的文件头。</p>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">解题步骤</h4>
+            <ol class="list-decimal pl-6 my-2 space-y-1">
+                <li>将文件名后缀从 <code class="bg-gray-700 px-1 rounded">.docx</code> 修改为 <code class="bg-gray-700 px-1 rounded">.zip</code></li>
+                <li>解压这个zip压缩包</li>
+                <li>进入 <code class="bg-gray-700 px-1 rounded">word</code> 目录，打开 <code class="bg-gray-700 px-1 rounded">document.xml</code></li>
+                <p class="my-1">在 xml 文件里直接搜索关键词 <code class="bg-gray-700 px-1 rounded">flag</code>，找到flag。</p>
+            </ol>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">考点总结</h4>
+            <ol class="list-decimal pl-6 my-2 space-y-1">
+                <li>文件头识别：PK(50 4B)代表zip压缩包；</li>
+                <li>文件后缀伪装，不能只依靠扩展名判断真实文件类型；</li>
+                <li>docx本身就是zip打包的xml文件，本题直接篡改后缀进行迷惑。</li>
+            </ol>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">踩坑记录</h4>
+            <p>❌ 反复尝试用Word打开docx，只会报错；</p>
+            <p>✅ 识别文件头判断真实文件类型，不要被文件名后缀欺骗。</p>
+        </div>
+        <br>
+        <a href="./index.html" class="text-blue-400 hover:underline">← 返回博客帖子列表</a>
+    </div>
 </body>
 </html>
