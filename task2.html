@@ -1,44 +1,70 @@
 <!DOCTYPE html>
-<html>
-<body>
-<h1>Task2 第二个帖子 Bugku Web 滑稽 Writeup</h1>
-<hr>
-<p><!DOCTYPE html>
-<html>
-<body>
-
-<p>Bugku Web 滑稽 Writeup</p>
-<p>题目信息</p>
-<p>平台：Bugku CTF</p>
-<p>分类：Web</p>
-<p>难度：签到题</p>
-<p>分值：10 分</p>
-<p>题目描述：打开页面满屏滑稽表情</p>
-
-<p>题目分析：</p>
-<p>访问靶机链接，页面上铺满滑稽 emoji 图片，没有任何输入框、按钮，没有跳转。 考点：查看网页源代码（前端源码泄露），属于 CTF 最基础的签到题，flag 直接写在 HTML 注释里面。</p>
-
-<p>解题步骤：</p>
-<p>打开题目网页，看到满屏幕滑稽表情。</p>
-<p>两种方式查看源码：</p>
-<p>快捷键：F12 打开开发者工具，切换到Elements标签看 HTML；</p>
-<p>快捷键：Ctrl + U 直接查看页面源代码（推荐）。</p>
-<p>在源码中往下翻，找到 HTML 注释 &lt;!-- flag{xxxxxx} --&gt;，复制大括号内内容。</p>
-<p>把 flag 提交到 Bugku 平台，完成。</p>
-
-<p>原理：</p>
-<p>网页上看到的只是前端渲染出来的图片，HTML 源码里可以写注释，浏览器不会展示注释内容，但查看源码时可以直接看到。服务器直接返回完整 HTML，没有后端校验，flag 明文写在页面注释中。</p>
-
-<p>知识点总结：</p>
-<p>Ctrl+U / F12 查看网页源代码是 Web 题最基础操作；</p>
-<p>HTML 注释 &lt;!-- 内容 --&gt; 不会在页面显示，但会随源码下发；</p>
-<p>前端源码泄露：敏感信息直接写在前端页面，不需要抓包、爆破、注入。</p>
-<p>提示：Bugku 很多 Web 签到题都是查看源码，遇到页面只有图片、文字，优先 Ctrl+U。</p>
-
-</div>
-</body>
-</html></p >
-<br>
-<a href="index.html">← 返回博客帖子列表</a >
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Task2 Bugku Web 滑稽 Writeup</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        card: '#1f2937',
+      },
+    }
+  }
+}
+</script>
+</head>
+<body class="bg-gray-900 text-gray-100 p-6 max-w-4xl mx-auto">
+    <div class="bg-card rounded-xl p-6">
+        <h1 class="text-2xl font-bold mb-2">Task2 第二个帖子<br>Bugku Web 滑稽 Writeup</h1>
+        <hr class="border-gray-700 my-4">
+        <h3 class="text-xl font-semibold mb-3">Bugku CTF《滑稽》Web Writeup</h3>
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">题目信息</h4>
+            <p>平台：Bugku CTF</p>
+            <p>分类：Web</p>
+            <p>难度：签到题</p>
+            <p>分值：10 分</p>
+            <p>题目描述：打开页面满屏滑稽表情</p>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">题目分析</h4>
+            <p>访问靶机链接，页面上铺满滑稽 emoji 图片，没有任何输入框、按钮，没有跳转。</p>
+            <p class="mt-2">考点：查看网页源代码（前端源码泄露），属于 CTF 最基础的签到题，flag 直接写在 HTML 注释里面。</p>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">解题步骤</h4>
+            <p>打开题目网页，看到满屏幕滑稽表情。</p>
+            <p class="mt-2">两种方式查看源码：</p>
+            <ul class="list-disc pl-6 my-2 space-y-1">
+                <li>快捷键：F12 打开开发者工具，切换到Elements标签看 HTML；</li>
+                <li>快捷键：Ctrl + U 直接查看页面源代码（推荐）。</li>
+            </ul>
+            <p class="mt-2">在源码中往下翻，找到 HTML 注释 <code class="bg-gray-700 px-1 rounded">&lt;!-- flag{xxxxxx} --&gt;</code>，复制大括号内内容。</p>
+            <p class="mt-1">把 flag 提交到 Bugku 平台，完成。</p>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">原理</h4>
+            <p>网页上看到的只是前端渲染出来的图片，HTML 源码里可以写注释，浏览器不会展示注释内容，但查看源码时可以直接看到。服务器直接返回完整 HTML，没有后端校验，flag 明文写在页面注释中。</p>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">知识点总结</h4>
+            <ul class="list-disc pl-6 my-2 space-y-1">
+                <li>Ctrl+U / F12 查看网页源代码是 Web 题最基础操作；</li>
+                <li>HTML 注释 <code class="bg-gray-700 px-1 rounded">&lt;!-- 内容 --&gt;</code> 不会在页面显示，但会随源码下发；</li>
+                <li>前端源码泄露：敏感信息直接写在前端页面，不需要抓包、爆破、注入。</li>
+            </ul>
+            <p class="mt-2">提示：Bugku 很多 Web 签到题都是查看源码，遇到页面只有图片、文字，优先 Ctrl+U。</p>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">踩坑记录</h4>
+            <p>❌ 反复在页面上点来点去，页面肉眼看不到flag；</p>
+            <p>✅ 遇到纯图片页面，优先快捷键 Ctrl+U 查看源代码。</p>
+        </div>
+        <br>
+        <a href="./index.html" class="text-blue-400 hover:underline">← 返回博客帖子列表</a>
+    </div>
 </body>
 </html>
