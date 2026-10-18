@@ -1,55 +1,90 @@
 <!DOCTYPE html>
-<html>
-<body>
-<h1>Task20 第二十个帖子 多种方法解决
-</h1>
-<hr>
-<p><!DOCTYPE html>
-<html>
-<body>
-<p>Bugku CTF《多种方法解决》MISC题目基础信息</p>
-<p>题目名称：多种方法解决</p>
-<p>题目类型：MISC 杂项</p>
-<p>题目提示：KEY{}</p>
-<p>题目描述：在做题过程中你会得到一个二维码图片</p>
-
-<p>审题分析：</p>
-<p>这道题名字叫 “多种方法解决”，顾名思义，解题路径不止一条，下面会把主流的几种解题方式全部讲清楚，全程不用写代码，依靠修改后缀、在线工具、浏览器、CTF 辅助工具就可以完成解题。</p>
-
-<p>第一步：下载并观察原始文件</p>
-<p>从平台下载题目附件之后，得到文件名字叫做 KEY.exe。</p>
-<p>第一眼看到后缀是 exe，很多同学会直接双击运行，双击之后程序没有弹出窗口，也没有输出任何信息，不会直接给出答案。exe 只是伪装的外壳，并不是真正可执行程序，属于 MISC 经典的文件后缀欺骗考点。</p>
-<p>MISC 套路：文件后缀名只是系统用来识别文件用的标识，文件真正的内容由文件内部字节数据决定，后缀可以随意修改，修改后缀不会改动文件内部数据。</p>
-
-<p>方法一：修改后缀为 txt，在线 Base64 转图片（纯在线网页工具，不需要安装软件）</p>
-<p>将文件 KEY.exe 重命名，把后缀 .exe 修改为 .txt，文件名变成 KEY.txt。</p>
-<p>Windows 系统如果看不到后缀名：文件夹上方【查看】选项卡，勾选 “文件扩展名”，才能修改后缀，否则只是把文件名改成KEY.exe.txt。</p>
-<p>双击打开这个 txt 文本文件，打开之后可以看到一大段很长的字符，这一长串全部是 Base64 编码字符，这串编码的本质是一张二维码图片的 Base64 数据。部分文本开头还带有标记 data:image/jpg;base64,，这个标记是 HTML 用来表示图片 Base64 资源的标识。</p>
-<p>全选复制 txt 里面全部 Base64 内容。这里有两种小细节，如果开头有data:image/jpg;base64,，可以把这一段前缀删掉，只复制逗号后面的 Base64 字符串；也可以直接完整复制全部内容。</p>
-<p>打开在线 Base64 转图片网站，例如 qsnctf 工具站、随波逐流在线工具、CyberChef 网页版。</p>
-<p>方案 A（CyberChef 网页）：把复制的 Base64 粘贴输入框，搜索操作 From Base64，再增加 Render Image 操作，页面右侧就直接渲染出来二维码图片。</p>
-<p>方案 B（专门 base64 转图片网站）：粘贴编码，点击转换，网页直接生成图片，右键保存二维码图片到电脑本地。</p>
-<p>拿到二维码图片，使用微信、QQ 或者在线二维码识别网站对图片扫码解码，解码完成就可以得到大括号内部的内容。按照题目提示格式KEY{内容}组合，得到最终答案。</p>
-
-<p>方法二：直接利用浏览器解析 Base64，不用转换工具</p>
-<p>这个是非常巧妙的解题方式，完全不需要第三方解码网站。</p>
-<p>打开刚才的 KEY.txt，复制完整 Base64 字符串，包含data:image/jpg;base64,前缀。</p>
-<p>打开任意浏览器，点击最上方的地址栏，把整段字符串粘贴进去，直接按下回车键。</p>
-<p>浏览器会识别这是图片的 Data‑URL，直接在页面渲染展示出二维码图片。</p>
-<p>截图保存屏幕上的二维码，进行扫码识别，拿到 KEY 大括号内的字符串。</p>
-
-<p>题目考点复盘：</p>
-<p>这道题目名字 “多种方法解决”，就是告诉选手 MISC 杂项题，达成目标的路径并不唯一。</p>
-<p>考察知识点：</p>
-<p>文件后缀名欺骗，区分文件显示后缀和文件真实内容。</p>
-<p>图片 Base64 编码原理，图片可以编码成一大段文本字符串存储。</p>
-<p>Data‑URL 格式的理解，浏览器原生支持直接解析 base64 图片资源。</p>
-<p>二维码解码，MISC 常见载体。</p>
-<p>熟悉 CTF 辅助工具、在线编码解码平台的使用。</p>
-</div>
-</body>
-</html></p >
-<br>
-<a href="index.html">← 返回博客帖子列表</a >
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Task20 多种方法解决</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        card: '#1f2937',
+      },
+    }
+  }
+}
+</script>
+</head>
+<body class="bg-gray-900 text-gray-100 p-6 max-w-4xl mx-auto">
+    <div class="bg-card rounded-xl p-6">
+        <h1 class="text-2xl font-bold mb-2">Task20 第二十个帖子<br>多种方法解决</h1>
+        <hr class="border-gray-700 my-4">
+        <h3 class="text-xl font-semibold mb-3">Bugku CTF《多种方法解决》MISC Writeup</h3>
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">题目基础信息</h4>
+            <p>题目名称：多种方法解决</p>
+            <p>题目类型：MISC 杂项</p>
+            <p>题目提示：KEY{}</p>
+            <p>题目描述：在做题过程中你会得到一个二维码图片</p>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">审题分析</h4>
+            <p>这道题名字叫 “多种方法解决”，顾名思义，解题路径不止一条，下面会把主流的几种解题方式全部讲清楚，全程不用写代码，依靠修改后缀、在线工具、浏览器、CTF 辅助工具就可以完成解题。</p>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">第一步：下载并观察原始文件</h4>
+            <p>从平台下载题目附件之后，得到文件名字叫做 <code class="bg-gray-700 px-1 rounded">KEY.exe</code>。</p>
+            <p class="mt-2">第一眼看到后缀是 exe，很多同学会直接双击运行，双击之后程序没有弹出窗口，也没有输出任何信息，不会直接给出答案。exe 只是伪装的外壳，并不是真正可执行程序，属于 MISC 经典的文件后缀欺骗考点。</p>
+            <p class="mt-2">MISC 套路：文件后缀名只是系统用来识别文件用的标识，文件真正的内容由文件内部字节数据决定，后缀可以随意修改，修改后缀不会改动文件内部数据。</p>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">方法一：修改后缀为 txt，在线 Base64 转图片</h4>
+            <p class="text-sm text-gray-300">（纯在线网页工具，不需要安装软件）</p>
+            <ol class="list-decimal pl-6 my-2 space-y-1">
+                <li>将文件 KEY.exe 重命名，把后缀 <code class="bg-gray-700 px-1 rounded">.exe</code> 修改为 <code class="bg-gray-700 px-1 rounded">.txt</code>，文件名变成 KEY.txt。</li>
+                <li>Windows 系统如果看不到后缀名：文件夹上方【查看】选项卡，勾选 “文件扩展名”，才能修改后缀，否则只是把文件名改成KEY.exe.txt。</li>
+                <li>双击打开这个 txt 文本文件，打开之后可以看到一大段很长的字符，这一长串全部是 Base64 编码字符，这串编码的本质是一张二维码图片的 Base64 数据。部分文本开头还带有标记 <code class="bg-gray-700 px-1 rounded">data:image/jpg;base64,</code>，这个标记是 HTML 用来表示图片 Base64 资源的标识。</li>
+                <li>全选复制 txt 里面全部 Base64 内容。这里有两种小细节，如果开头有data:image/jpg;base64,，可以把这一段前缀删掉，只复制逗号后面的 Base64 字符串；也可以直接完整复制全部内容。</li>
+                <li>打开在线 Base64 转图片网站，例如 qsnctf 工具站、随波逐流在线工具、CyberChef 网页版。
+                    <ul class="list-disc pl-6 my-1">
+                        <li>方案 A（CyberChef 网页）：把复制的 Base64 粘贴输入框，搜索操作 From Base64，再增加 Render Image 操作，页面右侧就直接渲染出来二维码图片。</li>
+                        <li>方案 B（专门 base64 转图片网站）：粘贴编码，点击转换，网页直接生成图片，右键保存二维码图片到电脑本地。</li>
+                    </ul>
+                </li>
+                <li>拿到二维码图片，使用微信、QQ 或者在线二维码识别网站对图片扫码解码，解码完成就可以得到大括号内部的内容。按照题目提示格式KEY{内容}组合，得到最终答案。</li>
+            </ol>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">方法二：直接利用浏览器解析 Base64，不用转换工具</h4>
+            <p>这个是非常巧妙的解题方式，完全不需要第三方解码网站。</p>
+            <ol class="list-decimal pl-6 my-2 space-y-1">
+                <li>打开刚才的 KEY.txt，复制完整 Base64 字符串，包含<code class="bg-gray-700 px-1 rounded">data:image/jpg;base64,</code>前缀。</li>
+                <li>打开任意浏览器，点击最上方的地址栏，把整段字符串粘贴进去，直接按下回车键。</li>
+                <li>浏览器会识别这是图片的 Data‑URL，直接在页面渲染展示出二维码图片。</li>
+                <li>截图保存屏幕上的二维码，进行扫码识别，拿到 KEY 大括号内的字符串。</li>
+            </ol>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">题目考点复盘</h4>
+            <p>这道题目名字 “多种方法解决”，就是告诉选手 MISC 杂项题，达成目标的路径并不唯一。</p>
+            <p class="mt-2">考察知识点：</p>
+            <ul class="list-disc pl-6 my-2 space-y-1">
+                <li>文件后缀名欺骗，区分文件显示后缀和文件真实内容。</li>
+                <li>图片 Base64 编码原理，图片可以编码成一大段文本字符串存储。</li>
+                <li>Data‑URL 格式的理解，浏览器原生支持直接解析 base64 图片资源。</li>
+                <li>二维码解码，MISC 常见载体。</li>
+                <li>熟悉 CTF 辅助工具、在线编码解码平台的使用。</li>
+            </ul>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 class="text-lg font-semibold mb-2">踩坑记录</h4>
+            <p>❌ 直接双击exe运行，不会有任何输出；</p>
+            <p>❌ Windows未开启文件扩展名，修改后缀只是改文件名，后缀不变；</p>
+            <p>✅ 遇到伪装exe，优先修改后缀查看内部文本内容。</p>
+        </div>
+        <br>
+        <a href="./index.html" class="text-blue-400 hover:underline">← 返回博客帖子列表</a>
+    </div>
 </body>
 </html>
